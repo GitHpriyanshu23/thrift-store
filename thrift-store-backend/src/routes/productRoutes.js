@@ -123,9 +123,37 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create new product (protected route)
-router.post('/', ensureAuth, upload.array('images', 5), async (req, res) => {
+router.post('/', ensureAuth, (req, res, next) => {
+  console.log('📤 About to upload images...');
+  upload.array('images', 5)(req, res, (err) => {
+    if (err) {
+      console.error('❌ Multer upload error:', err.message);
+      console.error('Error type:', err.constructor.name);
+      console.error('Full error:', err);
+      return res.status(400).json({
+        success: false,
+        error: `Upload failed: ${err.message}`
+      });
+    }
+    console.log('✅ Files uploaded to Cloudinary');
+    next();
+  });
+}, async (req, res) => {
   try {
+    console.log('📤 POST /products - Starting product upload');
     console.log('Raw request body:', req.body);
+    console.log('Files received:', req.files ? req.files.length : 0);
+    
+    if (req.files) {
+      req.files.forEach((file, index) => {
+        console.log(`File ${index}:`, {
+          fieldname: file.fieldname,
+          originalname: file.originalname,
+          path: file.path,
+          size: file.size
+        });
+      });
+    }
     
     // Try to get product data from either direct form fields or JSON
     let productData;
@@ -188,7 +216,10 @@ router.post('/', ensureAuth, upload.array('images', 5), async (req, res) => {
       product
     });
   } catch (error) {
-    console.error('Error creating product:', error);
+    console.error('❌ Error creating product:', error);
+    console.error('Error stack:', error.stack);
+    console.error('Error message:', error.message);
+    console.error('Full error:', JSON.stringify(error, null, 2));
     res.status(500).json({
       success: false,
       error: error.message || 'Failed to create product'

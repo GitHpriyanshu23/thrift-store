@@ -19,6 +19,18 @@ function ProductDetailPage() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const backendUrl = API_URL;
 
+  const fetchRelatedProducts = useCallback(async (category) => {
+    try {
+      const response = await productApi.getProducts({ category, limit: 4 });
+      // Filter out the current product
+      const related = response.data.products.filter(item => item._id !== id);
+      setRelatedProducts(related.slice(0, 3)); // Take maximum 3 products
+    } catch (err) {
+      console.error('Error fetching related products:', err);
+      // Not setting error state as this is not critical
+    }
+  }, [id]);
+
   const fetchProduct = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -40,23 +52,11 @@ function ProductDetailPage() {
     } finally {
       setLoading(false);
     }
-  }, [id]);
+  }, [id, fetchRelatedProducts]);
 
   useEffect(() => {
     fetchProduct();
   }, [fetchProduct]);
-
-  const fetchRelatedProducts = async (category) => {
-    try {
-      const response = await productApi.getProducts({ category, limit: 4 });
-      // Filter out the current product
-      const related = response.data.products.filter(item => item._id !== id);
-      setRelatedProducts(related.slice(0, 3)); // Take maximum 3 products
-    } catch (err) {
-      console.error('Error fetching related products:', err);
-      // Not setting error state as this is not critical
-    }
-  };
 
   const handleQuantityChange = (e) => {
     const value = parseInt(e.target.value);

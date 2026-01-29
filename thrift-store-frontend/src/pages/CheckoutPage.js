@@ -9,7 +9,6 @@ function CheckoutPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { showToast } = useToast();
-  const { currentUser } = useAuth();
   
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);

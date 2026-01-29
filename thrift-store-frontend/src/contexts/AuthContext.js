@@ -102,7 +102,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
       setIsInitialized(true);
     }
-  }, []); // Remove loading and isInitialized from dependencies
+  }, [isInitialized]);
 
   // Login function
   const handleLogin = async (token) => {

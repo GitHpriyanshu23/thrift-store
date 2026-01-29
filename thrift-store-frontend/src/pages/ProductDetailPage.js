@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { productApi } from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
@@ -19,12 +19,7 @@ function ProductDetailPage() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const backendUrl = API_URL;
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    fetchProduct();
-  }, [id]);
-
-  const fetchProduct = async () => {
+  const fetchProduct = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -45,7 +40,11 @@ function ProductDetailPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchProduct();
+  }, [fetchProduct]);
 
   const fetchRelatedProducts = async (category) => {
     try {

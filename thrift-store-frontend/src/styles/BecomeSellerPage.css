@@ -1,0 +1,201 @@
+.become-seller-page {
+  padding: 3rem 0;
+  background-color: #f9f9f9;
+  min-height: calc(100vh - 150px);
+}
+
+.become-seller-page .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.become-seller-page h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+  font-size: 2.2rem;
+}
+
+.info-banner {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.info-banner h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #444;
+  font-size: 1.5rem;
+}
+
+.benefits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.benefit {
+  flex: 1;
+  text-align: center;
+  padding: 1rem;
+  min-width: 200px;
+}
+
+.benefit .icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.benefit h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.benefit p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.seller-form {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #4a8fe7;
+  outline: none;
+}
+
+.submit-button {
+  width: 100%;
+  background-color: #4a8fe7;
+  color: white;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #3a7fd7;
+}
+
+.submit-button:disabled {
+  background-color: #94b9e7;
+  cursor: not-allowed;
+}
+
+.seller-agreement {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.seller-agreement a {
+  color: #4a8fe7;
+  text-decoration: none;
+}
+
+.seller-agreement a:hover {
+  text-decoration: underline;
+}
+
+.success-message {
+  background-color: #e7f7e7;
+  color: #2e7d32;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.already-seller {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  text-align: center;
+}
+
+.already-seller h2 {
+  color: #4a8fe7;
+  margin-bottom: 1rem;
+}
+
+.already-seller p {
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+.primary-button {
+  background-color: #4a8fe7;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.primary-button:hover {
+  background-color: #3a7fd7;
+}
+
+@media (max-width: 768px) {
+  .benefits {
+    flex-direction: column;
+  }
+  
+  .benefit {
+    min-width: 100%;
+  }
+  
+  .seller-form {
+    padding: 1.5rem;
+  }
+} 
